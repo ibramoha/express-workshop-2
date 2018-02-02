@@ -10,30 +10,16 @@ app.set("view engine", "handlebars");
 
 
 
-
-// app.get("/", (req, res) => {
-//   res.render("index", {
-//      title: "Ibrahim Profile" // insert your name instead
-//   });
-// });
-
-// app.get("/", (req, res) => {
-//   res.render("index", {
-//      title: "Ibrahim Profile" // insert your name instead
-//   });
-// });
-
-
 app.get("/", (req, res) => {
-    const filePath = __dirname + "/data/posts.json";
-    const callbackFunction = (error, file) => {
+  const filePath = __dirname + "/data/posts.json";
+  const callbackFunction = (error, file) => {
     // we call .toString() to turn the file buffer to a String
     const fileData = file.toString();
     // we use JSON.parse to get an object out the String
     const postsJson = JSON.parse(fileData);
     // send the json to the Template to render
     res.render("index", {
-      title: "Etzali Profile", // insert your name instead
+      title: "Ibrahim Profile", // insert your name instead
       posts: postsJson
     });
   };
@@ -42,22 +28,39 @@ app.get("/", (req, res) => {
 
 
 app.get("/my-cv", (req, res) => {
-  res.render("my-cv");
+  res.render("my-cv", {
+    title: "Ibrahim's CV" 
+    
+  });
 });
 
 
 
 app.get("/admin", (req, res) => {
-  res.render("admin");
+  res.render("admin" ,{
+    title: "Ibra Admin"
+    
+  });
 });
 
+app.get("/posts", (req, res) => res.sendFile(filePath));
 
-// app.get("/contact", (req, res) => {
-//   res.render("contact");
-// });
+
+app.get("/contact", (req, res) => {
+  res.render("contact" , {
+    title: "Ibrahim's Contact"
+    
+  });
+});
 
 
 // what does this line mean: process.env.PORT || 3000
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
 });
+
+
+
+
+
+// https://sheltered-beyond-57480.herokuapp.com/
